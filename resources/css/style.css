@@ -1,0 +1,67 @@
+.main {
+  padding-top: 80px;
+}
+
+html, body, .full-height {
+  min-height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+#remember-me-label {
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+.listing-cards {
+  margin-bottom: 10px;
+}
+
+.spaced-row {
+  margin-bottom: 20px;
+}
+
+.listing-cards:hover {
+  background-color: #f8f9fa !important;
+}
+
+.header-row .title-area {
+  padding-top: 5px;
+}
+
+.header-row .button-area>* {
+  margin-top: 10px;
+}
+
+.header-row .shared-3-button-set {
+  width: 32%;
+}
+
+.header-row .shared-2-button-set {
+  width: 48%;
+}
+
+.listing-cards .main-info>*, .header-row .title-area>* {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.tab-content {
+  margin-top: 20px;
+}
+
+.adjust-padding {
+  margin: 2px;
+}
+
+.preview {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  max-width: 350px;
+  max-height: 250px;
+}

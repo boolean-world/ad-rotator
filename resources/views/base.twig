@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/simplex/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  {% block head %}
+  {% endblock %}
+</head>
+<body>
+  {% block topcontent %}
+  {% endblock %}
+
+  <div class="full-height container main">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <script>
+  var adrotator = {
+    basepath: "{{ config('environment.basepath', '') }}"
+  }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  {% block js %}
+  {% endblock %}
+</body>
+</html>

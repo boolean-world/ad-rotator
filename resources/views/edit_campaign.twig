@@ -1,0 +1,134 @@
+{% extends 'base_acc.twig' %}
+
+{% block head %}
+<title>Edit "{{ campaign_name }}" &mdash; Ad Rotator</title>
+{% endblock %}
+
+{% block js %}
+<script>
+adrotator.campaign_items = {{ campaign_items | raw }}
+</script>
+<script src="{{ asset('js/edit_campaign.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row spaced-row header-row">
+  <div class="col-12 col-md-7 title-area">
+    <h1>Edit "{{ campaign_name }}"</h1>
+  </div>
+  <div class="col-12 col-md-5 button-area">
+    <a href="{{ link(stats_link) }}" class="shared-3-button-set btn btn-secondary">
+      <i class="fas fa-chart-pie"></i> Stats
+    </a>
+    <button type="button" id="create-new-item" class="shared-3-button-set btn btn-success" data-toggle="modal" data-target="#item-edit-modal">
+      <i class="fas fa-plus"></i> New ad
+    </button>
+    <button type="button" class="shared-3-button-set btn btn-primary" data-toggle="modal" data-target="#delete-modal">
+      <i class="fas fa-trash"></i> Delete
+    </button>
+  </div>
+</div>
+
+<div id="row">
+  <div id="col-12">
+    <div id="campaign-items">
+      {# filled on later by JS #}
+    </div>
+  </div>
+</div>
+
+<form class="modal fade" id="item-edit-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{# filled by JS #}</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="preview">
+          <img id="item-image" class="preview" hidden>
+        </div>
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-image"></i>
+            </div>
+          </div>
+          <input type="text" class="form-control" placeholder="Image URL" name="item-image-url">
+        </div>
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-link"></i>
+            </div>
+          </div>
+          <input type="text" class="form-control" placeholder="Link URL" name="item-link-url">
+        </div>
+        <div class="form-group input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fas fa-mouse-pointer adjust-padding"></i>
+            </div>
+          </div>
+          <input type="text" class="form-control" placeholder="Slug" name="item-slug">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+          Close
+        </button>
+        <button type="submit" class="btn btn-success" id="save-item-button">
+          <i class="fas fa-spinner fa-pulse" id="save-item-spinner" hidden></i>
+          <i class="fas fa-check"></i>
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form class="modal fade" id="delete-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Do you want to delete this campaign?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" id="delete-campaign">
+          <i class="fas fa-spinner fa-pulse" id="delete-campaign-spinner" hidden></i>
+          <i class="fas fa-trash"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form class="modal fade" id="delete-item-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Do you want to delete this ad?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" id="delete-item">
+          <i class="fas fa-spinner fa-pulse" id="delete-item-spinner" hidden></i>
+          <i class="fas fa-trash"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

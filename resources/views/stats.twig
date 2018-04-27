@@ -1,0 +1,74 @@
+{% extends 'base_acc.twig' %}
+
+{% block js %}
+<script src="{{ asset('js/stats.js') }}"></script>
+{% endblock %}
+
+{% block head %}
+<title>Statistics for "{{ campaign_name }}" &mdash; Ad Rotator</title>
+{% endblock %}
+
+{% block content %}
+<div class="row spaced-row header-row">
+  <div class="col-12 col-md-8 title-area">
+    <h1>Statistics for "{{ campaign_name }}"</h1>
+  </div>
+  <div class="col-12 col-md-4 button-area">
+    <a href="{{ link(edit_link) }}" class="shared-2-button-set btn btn-secondary">
+      <i class="fas fa-pencil-alt"></i> Edit
+    </a>
+    <button type="button" class="shared-2-button-set btn btn-primary" data-toggle="modal" data-target="#delete-modal">
+      <i class="fas fa-trash"></i> Delete
+    </button>
+  </div>
+</div>
+
+<div id="row">
+  <div id="col-12">
+    <div id="campaign-items">
+      {% if stats %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Month/Year</th>
+            <th scope="col">Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for stat in stats %}
+          <tr>
+            <td>{{ month_in_words(stat.month) }} {{ stat.year }}</th>
+            <td>{{ stat.conversions }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+        There are no statistics to show.
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<form class="modal fade" id="delete-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        Do you want to delete this campaign?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" id="delete-button">
+          <i class="fas fa-spinner fa-pulse" id="delete-modal-spinner" hidden></i>
+          <i class="fas fa-trash"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+{% endblock %}

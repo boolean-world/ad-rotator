@@ -1,0 +1,27 @@
+#!/usr/bin/php
+<?php
+
+chdir(__DIR__.'/..');
+
+require_once 'vendor/autoload.php';
+
+$cmdclassnames = [
+	App\Commands\ServeCommand::class,
+	App\Commands\CleanCommand::class,
+	App\Commands\DiCleanCommand::class,
+	App\Commands\TempCleanCommand::class,
+	App\Commands\RoutesCleanCommand::class,
+	App\Commands\ConfigCleanCommand::class,
+	App\Commands\TemplatesCleanCommand::class,
+	App\Commands\MigrationsRemoveCommand::class,
+	App\Commands\MigrationsInstallCommand::class
+];
+
+$app = new Symfony\Component\Console\Application('Command-line web application management tool.');
+
+foreach ($cmdclassnames as $cmdclassname) {
+	$app->add(new $cmdclassname);
+}
+
+bootstrap_eloquent(new App\Library\Configuration());
+$app->run();

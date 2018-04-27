@@ -1,0 +1,11 @@
+/vendor/
+/.vagrant/
+/data/
+/public/assets/
+/node_modules/
+*.DS_Store
+*.log
+*.swp
+*.orig
+*.rej
+*.bak

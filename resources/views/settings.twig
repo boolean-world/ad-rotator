@@ -1,0 +1,173 @@
+{% extends 'base_acc.twig' %}
+
+{% block head %}
+<title>Settings &mdash; Ad Rotator</title>
+{% endblock %}
+
+{% block js %}
+<script src="{{ asset('js/settings.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row spaced-row">
+  <div class="col-12">
+    <h1>Settings</h1>
+  </div>
+</div>
+
+<div class="row spaced-row">
+  <div class="col-12">
+    <h2>Account</h2>
+    <p>You are logged in as <b>{{ current_username }}</b>.
+    <form id="account-form">
+      <div class="form-group row">
+        <label for="old_password" class="col-sm-5 col-form-label">
+          Old password
+        </label>
+        <div class="col-sm-7">
+          <input type="password" class="form-control" id="old-password">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="new_password" class="col-sm-5 col-form-label">
+          New password
+        </label>
+        <div class="col-sm-7">
+          <input type="password" class="form-control" id="new-password">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="new_password_again" class="col-sm-5 col-form-label">
+          New password (again)
+        </label>
+        <div class="col-sm-7">
+          <input type="password" class="form-control" id="new-password-again">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" id="account-submit" disabled>
+        <i class="fas fa-spinner fa-pulse" id="account-spinner" hidden></i>
+        <i class="fas fa-check"></i>
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="row spaced-row">
+  <div class="col-12">
+    <h2>Security</h2>
+    <form id="security-form">
+      <div class="form-group row">
+        <label for="login-attempts" class="col-sm-5 col-form-label">
+          Number of incorrect login attempts before lockout
+        </label>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" id="login-attempts" value="{{ prefs.login_security.attempts }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="login-in" class="col-sm-5 col-form-label">
+          Time (in seconds) in which these failed attempts should happen
+        </label>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" id="login-in" value="{{ prefs.login_security.in }}">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" id="security-submit" disabled>
+        <i class="fas fa-spinner fa-pulse" id="security-spinner" hidden></i>
+        <i class="fas fa-check"></i>
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="row spaced-row">
+  <div class="col-12">
+    <h2>Other</h2>
+    <form id="other-form">
+      <div class="form-group row">
+        <label for="ignored_user_agents" class="col-sm-5 col-form-label">
+          User agents to ignore from click tracking
+          <br>
+          (Case insensitive regex; leave blank to count all visits as clicks.)
+        </label>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" id="ignored_user_agents"
+          value="{{ prefs.ignored_user_agents }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="redirect_basepath" class="col-sm-5 col-form-label">
+          Redirect base path
+          <br>
+          (Used in integrations to link to the original website. You must set up server URL
+          rewrites if you change define this. Leave blank for the default value of
+          <code>{environment.basepath}/redirect</code>)
+        </label>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" id="redirect_basepath"
+          value="{{ prefs.redirect_basepath }}">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="wordpress_campaigns" class="col-sm-5 col-form-label">
+          Active Wordpress campaigns
+          <br>
+          (Leave blank to disable ads, seperate multiple campaigns with commas.)
+        </label>
+        <div class="col-sm-7">
+          <input type="text" class="form-control campaign-autofill" list="campaigns-datalist"
+          id="wordpress_campaigns" value="{{ prefs.wordpress_campaigns }}" autocomplete="off">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="wordpress_widget_name" class="col-sm-5 col-form-label">
+          Wordpress unique widget identifier
+          <br>
+          (If you change this, you need to add back the widget to the list.
+          <code>ad_rotator_widget</code> is the default.)
+        </label>
+        <div class="col-sm-7">
+          <input type="text" class="form-control" id="wordpress_widget_name"
+          value="{{ prefs.wordpress_widget_name }}">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" id="other-submit" disabled>
+        <i class="fas fa-spinner fa-pulse" id="other-spinner" hidden></i>
+        <i class="fas fa-check"></i>
+        Save
+      </button>
+      <br>
+    </form>
+  </div>
+</div>
+
+<div class="row spaced-row">
+  <div class="col-12">
+    <p>
+      The configuration contains more values than the ones shown here, which are not shown here for security.
+      If you want to view or modify these values, please open the <i>data/config.json</i> file on the server.
+    </p>
+  </div>
+</div>
+
+<datalist id="campaigns-datalist">
+</datalist>
+
+<form class="modal fade" id="confirm-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        {# filled by JS later on. #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="delete-campaign">
+          <i class="fas fa-spinner fa-pulse" id="delete-campaign-spinner" hidden></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}

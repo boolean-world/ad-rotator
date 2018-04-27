@@ -1,0 +1,85 @@
+{% extends 'base_acc.twig' %}
+
+{% block head %}
+<title>Campaigns &mdash; Ad Rotator</title>
+{% endblock %}
+
+{% block js %}
+<script>
+adrotator.campaigns = {{ campaigns | raw }};
+adrotator.clicks = {{ clicks | raw }};
+adrotator.ads = {{ ads | raw }}
+</script>
+<script src="{{ asset('js/campaign.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row spaced-row header-row">
+  <div class="col-12 col-sm-9 title-area">
+    <h1>Ad campaigns</h1>
+  </div>
+  <div class="col-12 col-sm-3 button-area">
+    <button type="button" class="full-width btn btn-success" data-toggle="modal" data-target="#new-campaign-modal">
+      <i class="fas fa-plus"></i> New
+    </button>
+  </div>
+</div>
+
+<div id="row">
+  <div id="col-12">
+    <div id="campaigns">
+      {# filled later on by JS #}
+    </div>
+  </div>
+</div>
+
+<form class="modal fade" id="new-campaign-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create a new campaign</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group input-group">
+          <input type="text" class="form-control" name="campaign_name" placeholder="Campaign name">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+          Close
+        </button>
+        <button type="submit" class="btn btn-success" id="save-new-campaign">
+          <i class="fas fa-spinner fa-pulse" id="new-campaign-spinner" hidden></i>
+          <i class="fas fa-check"></i>
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form class="modal fade" id="delete-modal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        {# again, filled by JS later on. #}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          <i class="fas fa-times"></i>
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" id="delete-campaign">
+          <i class="fas fa-spinner fa-pulse" id="delete-campaign-spinner" hidden></i>
+          <i class="fas fa-trash"></i>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+{% endblock %}
