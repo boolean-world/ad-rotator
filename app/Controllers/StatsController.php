@@ -30,7 +30,7 @@ class StatsController extends Controller {
 				->select('year', 'month', 'conversions')->get()->toArray(),
 			'campaign_name' => Campaign::where('id', $data['id'])
 				->pluck('campaign_name')->first(),
-			'edit_link' => "stats/{$data['id']}"
+			'edit_link' => "edit/{$data['id']}"
 		]));
 	}
 }
