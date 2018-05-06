@@ -19,6 +19,9 @@
   // Redis details
   "redis": {
     "socket": "/var/run/redis/redis.sock"
+    // In case sockets are unavailable, use:
+    // "host": "127.0.0.1",
+    // "port": 6379
   },
   "users": {
     // Add any users and their passwords in this section. Passwords
