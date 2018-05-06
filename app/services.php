@@ -18,9 +18,10 @@ return (function() {
 
 		Redis::class => function(App\Library\Configuration $config) {
 			$redis = new Redis();
+			$socket = $config->get('redis.socket', null);
 
-			if (isset($config['socket'])) {
-				$redis->connect($config->get('redis.socket'));
+			if ($socket !== null) {
+				$redis->connect($socket);
 			}
 			else {
 				$redis->connect($config->get('redis.host'), $config->get('redis.port'));
