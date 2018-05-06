@@ -2,12 +2,19 @@
   "name": "ad-rotator",
   "version": "0.0.1",
   "description": "A simple ad rotator",
-  "main": " ",
+  "main": "gulpfile.js",
   "scripts": {
-    "test": " "
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boolean-world/elbo.git"
   },
   "author": "",
-  "license": "See license in LICENSE.md",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/boolean-world/elbo/issues"
+  },
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -15,10 +22,10 @@
     "glob": "^7.1.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
-    "gulp-clean-css": "^3.9.3",
+    "gulp-clean-css": "^3.9.4",
     "gulp-uglify": "^3.0.0",
     "strip-json-comments": "^2.0.1",
     "vinyl-named": "^1.1.0",
-    "webpack-stream": "^4.0.2"
+    "webpack-stream": "^4.0.3"
   }
 }

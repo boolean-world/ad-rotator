@@ -19,6 +19,6 @@
 		]
 	},
 	"require-dev": {
-		"psy/psysh": "^0.8.17"
+		"psy/psysh": "^0.9"
 	}
 }

@@ -19,6 +19,8 @@ Vagrant.configure("2") do |config|
     apt-get update
     apt-get install -y htop unzip php-zip php-cli php-gd php-mbstring php-curl php-intl php-bcmath php-mbstring php-gmp php-mysql php-redis mysql-server mysql-client redis-server redis-tools nodejs
     apt-get upgrade -y
+    sed -ri 's/^bind /#&/;s/^(port ).*$/\\10/;s/^# (unixsocket)/\\1/;s/^(unixsocketperm )[0-9]+/\\177 /' /etc/redis/redis.conf
+    systemctl start redis-server.service
     mkdir -p /home/vagrant/.local/bin/
     wget https://git.io/psysh -O /home/vagrant/.local/bin/psysh
     chmod +x /home/vagrant/.local/bin/psysh
