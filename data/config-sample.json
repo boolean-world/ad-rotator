@@ -1,0 +1,43 @@
+{
+  "environment": {
+    // The type of environment, can be "development" or "production".
+    "phase": "development",
+    // The path at which the application is installed. Type the path
+    // without the trailing slash, leave blank if running under the
+    // root directory.
+    "basepath": ""
+  },
+  "database": {
+    // Details of the database used.
+    "driver": "mysql",
+    "host": "host",
+    "database": "database",
+    "username": "username",
+    "password": "password",
+    "charset": "utf8mb4"
+  },
+  // Redis details
+  "redis": {
+    "socket": "/var/run/redis/redis.sock"
+  },
+  "users": {
+    // Add any users and their passwords in this section. Passwords
+    // must be hashed using password_hash(). Such passwords must be
+    // eight characters or longer.
+    // "user1": "password1",
+    // "user2": "password2"
+  },
+  "prefs": {
+    // The number of attempts allowed, within "attempts_after" seconds.
+    "login_security": {
+      "attempts": 5,
+      "in": 600
+    },
+    // User agents to ignore.
+    "ignored_user_agents": "httrack|bot|spider|crawl|seo|http|@|libwww|python|curl|wget|::|preview|whatsapp|ia_archiver",
+    // Redirect base path. You must set up server rewrites if you
+    // change this. When not defined, the default is
+    // ${environment.basepath}/redirect
+    //"redirect_basepath": null
+  }
+}
