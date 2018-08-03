@@ -37,7 +37,7 @@
       "in": 600
     },
     // User agents to ignore.
-    "ignored_user_agents": "httrack|bot|spider|crawl|seo|http|@|libwww|python|curl|wget|::|preview|whatsapp|ia_archiver",
+    "ignored_user_agents": "httrack|bot|spider|crawl|seo|http|@|libwww|python|curl|wget|::|preview|whatsapp|ia_archiver"
     // Redirect base path. You must set up server rewrites if you
     // change this. When not defined, the default is
     // ${environment.basepath}/redirect
